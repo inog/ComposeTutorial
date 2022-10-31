@@ -1,8 +1,10 @@
 package de.ingoreschke.composetutorial
 
 import android.os.Bundle
+import android.os.Message
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,28 +21,35 @@ class MainActivity : ComponentActivity() {
             ComposeTutorialTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("World")
+                    MessageCard(MyMessage("Android", "Jetpack Compose"))
                 }
             }
         }
     }
 }
 
+data class MyMessage(val author:String, val body:String);
+
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MessageCard(msg: MyMessage) {
+    Column() {
+        Text(text = msg.author)
+        Text(text = msg.body)
+    }
 }
 
 @Preview
 @Composable
-fun PreviewGreeting(){
-    Greeting(name = "Ingo")
+fun PreviewMessageCard(){
+    MessageCard(
+        msg = MyMessage("Ingo", "Have fun with that stuff")
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ComposeTutorialTheme {
-        Greeting("Android")
+        MessageCard(MyMessage("Android", "Test this jetpackstuff"))
     }
 }
