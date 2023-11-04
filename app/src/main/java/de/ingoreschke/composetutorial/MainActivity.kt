@@ -66,7 +66,7 @@ fun MessageCard(msg: MyMessage) {
             Surface (shape = MaterialTheme.shapeScheme.large , shadowElevation = 1.dp) {
                 Text(
                     text = msg.body,
-                    modifier = Modifier.padding(end = 8.dp),
+                    modifier = Modifier.padding(all = 4.dp),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -74,7 +74,10 @@ fun MessageCard(msg: MyMessage) {
     }
 }
 
-@Preview
+@Preview(name = "Light Mode")
+@Preview (uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    name = "Dark Mode")
 @Composable
 fun PreviewMessageCard() {
     ComposeTutorialTheme {
@@ -86,7 +89,7 @@ fun PreviewMessageCard() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, name = "Light Mode")
 @Composable
 fun DefaultPreview() {
     ComposeTutorialTheme {
