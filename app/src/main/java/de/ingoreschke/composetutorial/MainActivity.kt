@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -38,16 +39,18 @@ data class MyMessage(val author: String, val body: String)
 
 @Composable
 fun MessageCard(msg: MyMessage) {
-    Row {
+    Row (modifier = Modifier.padding(all = 8.dp)) {
         Image(
             painter = painterResource(R.drawable.profile_picture),
-            contentDescription = "Contact profile picture"
+            contentDescription = "Contact profile picture",
+            modifier = Modifier
+                .height(40.dp)
+                .width(40.dp)
         )
-
-        // Add a horizontal space between the image and the column
         Spacer(modifier = Modifier.width(8.dp))
         Column {
             Text(text = msg.author)
+            Spacer(modifier = Modifier.height(4.dp))
             Text(text = msg.body)
         }
     }
